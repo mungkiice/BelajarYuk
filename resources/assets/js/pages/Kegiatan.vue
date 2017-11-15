@@ -1,0 +1,55 @@
+<template>
+	<div class="fh5co-blog-style-1">
+		<div class="container">
+			<div class="row p-b">
+					<div class="col-md-6 col-md-offset-3 text-center">
+						<h2 class="fh5co-heading wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">Kesini Yuk</h2>
+						<p class="wow fadeInUp" data-wow-duration="1s" data-wow-delay=".8s">Kami sajikan informasi tentang event - event yang menarik</p>
+					</div>
+				</div>
+			<div class="row p-b">
+				<div v-for="(kegiatan, index) in items" :key="kegiatan.id">
+					<kegiatan :data="kegiatan"></kegiatan>
+					<div class="clearfix" v-if="enter(index)"></div>
+				</div>
+			</div>
+			<paginator :dataSet="dataSet" @changed="fetch"></paginator>
+		</div>
+	</div>
+</template>
+<script>
+import Kegiatan from '../components/Kegiatan.vue';
+export default{
+	components:{Kegiatan},
+	data(){
+		return{
+			dataSet : false,
+			items : false,
+		};
+	},
+	created(){
+		this.fetch();
+	},
+	methods:{
+		fetch(page){
+			axios.get(this.url(page)).then(this.refresh);
+		},
+		url(page){
+			if(!page){
+				let query = location.search.match(/page=(\d+)/);
+				page = query ? query[1] : 1;
+			}
+			return 'api/v1/kegiatan?page='+page;
+		},
+		refresh({data}){
+			this.dataSet = data;
+			this.items = data.data;
+			window.scrollTo(0, 0);
+		},
+		enter(param){
+			var hasil = (param + 1) % 3;
+			return (hasil != 0) ? false : true;
+		},
+	}
+}
+</script>

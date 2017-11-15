@@ -1,0 +1,39 @@
+v-once
+v-html
+v-bind:id / v-bind:disabled / :href
+v-if / v-else / v-else-if gunakan pada element yang jarang toggle
+v-show gunakan pada element yang sering di toggle, v-show lebih utama dibanding v-if ketika terdapat keduanya
+v-for gunakan pada element yang akan dilooping, bisa gunakan untuk iterasi dari objek. (value, key, index). v-for lebih utama dibanding v-if
+v-on:click / @click
+v-model untuk mendefinisikan variabel input form
+v-model.lazy sinkronisasi ketika terjadi perubahan pada input
+v-model.number untuk casting tipe number. karena meskipun type number, html akan mengirimkannya dalam bentuk string
+@click.stop click event propagation will be stopped
+@submit.prevent the submit will no longer reload the page
+@click.stop.prevent modifier can be chained
+@click.capture use capture mode when adding the event listener
+@click.self only trigger if the target is the element itself
+@click.once 
+@keyup.once
+@click.native mendeteksi event pada root element dari component
+@ctrl.65.exact ctrl + C only
+<template></template> invisible wrapper
+props:[untuk lempar data dari parent ke child, child tidak boleh langsung menggunakan data props, harus dianggap raw agar tidak mutasi dengan data yang ada pada parent]
+
+computed:{
+untuk logic yang lebih kompleks
+roperti dari computed akan tersimpan di cache, sehingga computed akan dieksekusi hanya ketika terjadi perubahan dependeciesnya
+get: set: secara default computed berperan sebagai getter
+}
+
+methods:{
+sama seperti computed
+namun hasilnya tidak disimpan di cache, sehingga akan mengeksekusi setiap ia dipanggil
+}
+
+watch:{
+untuk mendeteksi perubahan nilai dari data vue
+digunakan untuk mendefinisikan apa yang akan dilakukan ketika terjadi perubahan dari data tersebut
+dapat digunakan untuk operasi asynchronous (accessing an API)
+}
+
