@@ -5,14 +5,11 @@ Route::prefix('v1')->group(function(){
 	Route::resource('kampanye','Api\KampanyeController');
 	Route::resource('berita', 'Api\BeritaController');
 	Route::resource('kursus','Api\KursusController');
-	Route::resource('users','Api\UserController');
-	Route::post('users/{user}/respon', 'Api\UserController@responOrder');
 	Route::resource('pelajaran','Api\PelajaranController');
 	Route::resource('provinsi', 'Api\ProvinsiController');
 	Route::resource('kabupaten', 'Api\KabupatenController');
 	Route::resource('kecamatan', 'Api\KecamatanController');
 	Route::resource('kelurahan', 'Api\KelurahanController');
-	Route::post('updatePlayerID', 'Api\UserController@setPlayerID');
 
 	Route::resource('penyelenggara','Api\PenyelenggaraController');
 	Route::post('penyelenggara/{penyelenggara}/kegiatan', 'Api\KegiatanController@store');
@@ -30,6 +27,10 @@ Route::prefix('v1')->group(function(){
 	Route::get('ulasan/{ulasan}', 'Api\UlasanController@show');
 	Route::put('ulasan/{ulasan}', 'Api\UlasanController@update');
 
+	Route::resource('users','Api\UserController');
+	Route::post('users/{user}/respon', 'Api\UserController@responOrder');
+	Route::post('users/updatePlayerID', 'Api\UserController@setPlayerID');
+	
 	Route::prefix('pertanyaan')->group(function(){
 		Route::get('{pertanyaan}/jawaban', 'Api\JawabanController@index');
 		Route::post('{pertanyaan}/jawaban', 'Api\JawabanController@store');

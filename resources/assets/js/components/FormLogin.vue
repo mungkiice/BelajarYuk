@@ -15,9 +15,15 @@
 					<!-- Begin # Login Form -->
 					<form id="login-form">
 						<div class="modal-body">
-							<div id="div-login-msg">
-								<div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
-								<span id="text-login-msg">Login</span>
+							<div id="div-lost-msg">
+								<div id="icon-lost-msg" class="glyphicon glyphicon-chevron-right"></div>
+								<span id="text-lost-msg">Login</span>
+							</div>
+							<div class="input-field col s12">
+								<select class="form-control" v-model="loginAsPengajar">
+									<option value="1" selected >Saya Pelajar</option>
+									<option value="2">Saya Pengajar</option>
+								</select>
 							</div>
 							<input id="login_username" v-model="email" class="form-control" type="text" placeholder="Email" required>
 							<input id="login_password" v-model="password" class="form-control" type="password" placeholder="Password" required>
@@ -96,14 +102,22 @@ export default{
 		return{
 			'email' : '',
 			'password' : '',
+			'loginAsPengajar' : 1,
+			'loginUrl': '',
+			'count' : 0,
 		};
+	},
+	watch:{
+		loginAsPengajar(){
+			this.loginUrl = this.loginAsPengajar == 2 ? '/pengajar': '/user';
+		}
 	},
 	methods:{
 		login(){
 			let formData = new FormData();
 			formData.append('email', this.email);
 			formData.append('password', this.password);
-			axios.post('/user/login', formData)
+			axios.post(this.loginUrl + '/login', formData)
 			.then(success => {
 				$('#login-modal').modal('hide');
 				window.location = '/berita';

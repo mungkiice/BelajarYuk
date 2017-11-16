@@ -18,7 +18,8 @@ class AktivitasTransformer extends TransformerAbstract
         return [
             'id' => $aktivitas->id,
             'type' => $aktivitas->type,
-            'created_at' => $aktivitas->created_at,
+            'created_at' => $aktivitas->created_at->diffForHumans(),
+            'subject_type' => $aktivitas->subject_type,
         ];
     }
     public function includeSubject(Activity $aktivitas){

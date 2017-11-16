@@ -88,13 +88,14 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show(User $user)
     {
-        $user = auth()->user();
         return fractal()
         ->item($user)
         ->transformWith(new UserTransformer)
         ->includeAktivitas()
+        ->includePertanyaan()
+        ->includeJawaban()
         ->toArray();
     }
 
@@ -155,7 +156,10 @@ class UserController extends Controller
         $user->update([
             'onesignal_player_id' => $request->player_id,
         ]);
-        return response()->json($user, 200);
+        return fractal()
+        ->item($user)
+        ->transformWith(new UserTransformer)
+        ->toArray();
     }
     public function responOrder(User $user, Request $request){
         if ($request->accepted) {

@@ -40,7 +40,6 @@ Vue.component('indeks-kegiatan', require('./pages/Kegiatan.vue'));
 Vue.component('indeks-pengajar', require('./pages/Pengajar.vue'));
 Vue.component('form-pesan-guru', require('./pages/FormPesanGuru.vue'));
 Vue.component('form-login', require('./components/FormLogin.vue'));
-Vue.component('layout-navigation', require('./components/Navigation.vue'));
 Vue.component('loading', require('./components/Loading.vue'));
 const app = new Vue({
 	el: '#app'

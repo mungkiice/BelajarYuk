@@ -45,7 +45,7 @@
 			<div class="col-md-9" id="profil">
 				<p>Aktivitas Terakhir...</p>
 				<div class="tab-content">
-					<!-- <activity v-for="aktivitas in dataAktivitas" :data="aktivitas"></activity> -->
+					<activity v-for="(aktivitas, index) in showedAktivitas" :key="aktivitas.id" :data="aktivitas" :actor="[dataProfile.id, dataProfile.nama]"></activity>
 				</div>
 			</div>
 		</div>
@@ -60,13 +60,18 @@ export default{
 			dataProfile: false,
 			dataPertanyaan: false,
 			dataJawaban: false,
-			dataAktivitas : false,	
+			dataAktivitas : false,
+			array : false,	
 		};
 	},
 	created(){
+		this.array = location.pathname.split('/');
 		this.fetch();
 	},
 	computed:{
+		showedAktivitas(){
+			return this.dataAktivitas;
+		},
 		status(){
 			return this.dataProfile.pendidikan_terakhir ? 'Pengajar' : 'Pelajar';
 		},
@@ -79,14 +84,13 @@ export default{
 	},
 	methods:{
 		fetch(){
-			axios.get('api/v1/user').then(this.refresh);
-		},
-		refresh({data}){
-			this.dataProfile = data;
-			this.dataJawaban = data.jawaban.data;
-			this.dataPertanyaan = data.pertanyaan.data;
-			this.dataAktivitas = data.aktivitas.data;
-		},
+			axios.get('/api/v1/users/'+this.array[2]).then((response) => {
+				this.dataProfile = response.data.data;
+				this.dataJawaban = this.dataProfile.jawaban.data;
+				this.dataPertanyaan = this.dataProfile.pertanyaan.data;
+				this.dataAktivitas = this.dataProfile.aktivitas.data;
+			});
+		}
 	}
 }
 </script>

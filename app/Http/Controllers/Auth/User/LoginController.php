@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth\User;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
@@ -27,6 +28,14 @@ class LoginController extends Controller
     protected function guard()
     {
         return Auth::guard('web_user');
+    }
+    public function logout(Request $request)
+    {
+        $this->guard('web_user')->logout();
+
+        $request->session()->invalidate();
+
+        return redirect('/diskusi');
     }
     /**
      * Where to redirect users after login.

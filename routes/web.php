@@ -33,7 +33,7 @@ Route::get('diskusi', 'WebController@indexDiskusi');
 Route::get('pertanyaan/{pelajaran}/{id}', 'WebController@detailDiskusi');
 Route::get('kampanye', 'WebController@indexKampanye');
 Route::get('kampanye/{id}', 'WebController@detailKampanye');
-Route::get('profil', 'WebController@detailProfil');
+Route::get('profil/{id?}', 'WebController@detailProfil');
 Route::get('bertanya', 'WebController@formPertanyaan');
 Route::get('kegiatan', 'WebController@indexKegiatan');
 Route::get('pengajar', 'WebController@indexPengajar');
@@ -57,7 +57,6 @@ Route::prefix('user')->group(function(){
 	Route::get('login', 'Auth\User\LoginController@showLoginForm')->name('user.login');
 	Route::post('login', 'Auth\User\LoginController@login');
 	Route::post('logout', 'Auth\User\LoginController@logout')->name('user.logout');
-
 	Route::post('password/email', 'Auth\User\ForgotPasswordController@sendResetLinkEmail')->name('user.password.email');
 	Route::get('password/reset', 'Auth\User\ForgotPasswordController@showLinkRequestForm')->name('user.password.request');
 	
@@ -69,5 +68,5 @@ Route::prefix('user')->group(function(){
 });
 
 Route::group(['prefix' => 'admin'], function () {
-    Voyager::routes();
+	Voyager::routes();
 });

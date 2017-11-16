@@ -11,7 +11,7 @@
 			<a :href="'/pertanyaan/' + data.pelajaran + '/' + data.id" v-text="data.judul"></a>
 			
 			<p v-text="data.konten"></p>
-			<button type="button" class="btn btn-default btn-xs" id="tombolJawab"><p>Jawab</p></button>
+			<!-- <button type="button" class="btn btn-default btn-xs" id="tombolJawab"><p>Jawab</p></button> -->
 		</div>
 	</div>
 </template>

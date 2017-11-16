@@ -3,16 +3,17 @@
 namespace App;
 
 trait OneSignalNotifications{
-	protected function sendMessageToAll($data){
-		$content = array(
-			"en" => 'English Message'
-		);
+	protected function sendMessageToAll($heading, $content, $data){
+		// $content = array(
+		// 	"en" => 'English Message'
+		// );
 
 		$fields = array(
 			'app_id' => "10a86433-0f00-48f3-8e35-b1b81099969a",
 			'included_segments' => array('All'),
 			'data' => $data,
-			'contents' => $content
+			'contents' => $content,
+			'headings' => $heading
 		);
 
 		$fields = json_encode($fields);
@@ -33,10 +34,10 @@ trait OneSignalNotifications{
 
 		return $response;
 	}
-	protected function sendMessageToUser($data){
-		$content = array(
-			"en" => 'English Message'
-		);
+	protected function sendMessageToUser($content, $data){
+		// $content = array(
+		// 	"en" => 'English Message'
+		// );
 
 		$fields = array(
 			'app_id' => "10a86433-0f00-48f3-8e35-b1b81099969a",

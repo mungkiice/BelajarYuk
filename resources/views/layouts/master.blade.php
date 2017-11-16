@@ -84,8 +84,7 @@
 <body>
     <div id="app">
         <div id="fh5co-page">
-            @include('layouts.nav') 
-            <layout-navigation></layout-navigation>     
+            @include('layouts.nav')    
             @yield('content')
             @include('layouts.fab')
             @include('layouts.footer')
@@ -123,5 +122,8 @@
     <script src="{{asset('js/main.js')}}"></script>
     {{-- script for using vue js --}}
     <script src="{{ asset('js/app.js') }}"></script>
+    <script type="text/javascript">
+        $('.dropdown-toggle').dropdown();
+    </script>
 </body>
 </html>

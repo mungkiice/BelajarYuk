@@ -158,7 +158,9 @@ class PengajarController extends Controller
         $pengajar->update([
             'onesignal_player_id' => $request->player_id,
         ]);
-        return response()->json($pengajar, 200);
+        return fractal()
+        ->item($pengajar, PengajarTransformer::class)
+        ->toArray();
     }
     public function pesanGuru(Pengajar $pengajar, Request $request){
         return $pengajar->order(array(

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth\Pengajar;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
@@ -27,6 +28,14 @@ class LoginController extends Controller
     protected function guard()
     {
         return Auth::guard('web_pengajar');
+    }
+    public function logout(Request $request)
+    {
+        $this->guard('web_pengajar')->logout();
+
+        $request->session()->invalidate();
+
+        return redirect('/diskusi');
     }
 
     /**

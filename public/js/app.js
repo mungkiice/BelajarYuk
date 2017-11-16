@@ -1173,7 +1173,7 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(12);
-module.exports = __webpack_require__(130);
+module.exports = __webpack_require__(127);
 
 
 /***/ }),
@@ -1212,8 +1212,7 @@ Vue.component('indeks-kegiatan', __webpack_require__(106));
 Vue.component('indeks-pengajar', __webpack_require__(112));
 Vue.component('form-pesan-guru', __webpack_require__(118));
 Vue.component('form-login', __webpack_require__(121));
-Vue.component('layout-navigation', __webpack_require__(124));
-Vue.component('loading', __webpack_require__(127));
+Vue.component('loading', __webpack_require__(124));
 var app = new Vue({
 	el: '#app'
 });
@@ -45153,16 +45152,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     domProps: {
       "textContent": _vm._s(_vm.data.konten)
     }
-  }), _vm._v(" "), _vm._m(0)])])
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('button', {
-    staticClass: "btn btn-default btn-xs",
-    attrs: {
-      "type": "button",
-      "id": "tombolJawab"
-    }
-  }, [_c('p', [_vm._v("Jawab")])])
-}]}
+  })])])
+},staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
@@ -45784,14 +45775,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			dataProfile: false,
 			dataPertanyaan: false,
 			dataJawaban: false,
-			dataAktivitas: false
+			dataAktivitas: false,
+			array: false
 		};
 	},
 	created: function created() {
+		this.array = location.pathname.split('/');
 		this.fetch();
 	},
 
 	computed: {
+		showedAktivitas: function showedAktivitas() {
+			return this.dataAktivitas;
+		},
 		status: function status() {
 			return this.dataProfile.pendidikan_terakhir ? 'Pengajar' : 'Pelajar';
 		},
@@ -45804,15 +45800,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	},
 	methods: {
 		fetch: function fetch() {
-			axios.get('api/v1/user').then(this.refresh);
-		},
-		refresh: function refresh(_ref) {
-			var data = _ref.data;
+			var _this = this;
 
-			this.dataProfile = data;
-			this.dataJawaban = data.jawaban.data;
-			this.dataPertanyaan = data.pertanyaan.data;
-			this.dataAktivitas = data.aktivitas.data;
+			axios.get('/api/v1/users/' + this.array[2]).then(function (response) {
+				_this.dataProfile = response.data.data;
+				_this.dataJawaban = _this.dataProfile.jawaban.data;
+				_this.dataPertanyaan = _this.dataProfile.pertanyaan.data;
+				_this.dataAktivitas = _this.dataProfile.aktivitas.data;
+			});
 		}
 	}
 });
@@ -45879,8 +45874,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
-/* harmony default export */ __webpack_exports__["default"] = ({});
+/* harmony default export */ __webpack_exports__["default"] = ({
+	props: ['data', 'actor'],
+	computed: {
+		keterangan: function keterangan() {
+			return ' Menulis pertanyaan ' + this.data.created_at;
+		},
+		aktor: function aktor() {
+			return this.actor[1] + ' --  ';
+		},
+		linkAktor: function linkAktor() {
+			return '/profil/' + this.actor[0];
+		}
+	}
+});
 
 /***/ }),
 /* 92 */
@@ -45893,29 +45904,26 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "id": "profil"
     }
   }, [_c('div', {
-    staticClass: "col-md-1"
-  }, [_c('center', [_c('img', {
-    staticClass: "img-circle",
+    staticClass: "col-md-12"
+  }, [_c('a', {
     staticStyle: {
-      "width": "50px",
-      "height": "auto"
+      "float": "left"
     },
     attrs: {
-      "src": "images/test.jpg"
+      "href": ""
     }
-  })])], 1), _vm._v(" "), _vm._m(0)])
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col-md-11"
   }, [_c('div', [_c('a', {
     staticStyle: {
       "float": "left",
       "margin-top": "25px"
     },
     attrs: {
-      "href": ""
+      "href": _vm.linkAktor
+    },
+    domProps: {
+      "textContent": _vm._s(_vm.aktor)
     }
-  }, [_vm._v("Iqbal Kurniawan — ")]), _vm._v(" "), _c('a', {
+  }), _vm._v(" "), _c('a', {
     staticStyle: {
       "float": "left",
       "margin-top": "25px",
@@ -45924,8 +45932,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     },
     attrs: {
       "href": ""
+    },
+    domProps: {
+      "textContent": _vm._s(_vm.keterangan)
     }
-  }, [_vm._v(" Menulis pertanyaan 42 minutes ago")])]), _c('hr', {
+  })])]), _vm._v(" "), _c('hr', {
     staticStyle: {
       "margin-bottom": "20px"
     },
@@ -45933,23 +45944,17 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "width": "100%",
       "align": "center"
     }
-  }), _vm._v(" "), _c('p', [_vm._v("Apa perbedaan antara sistem pakar Expert System dengan Case Based Reasoning ? ")]), _vm._v(" "), _c('hr', {
+  }), _vm._v(" "), _c('p', {
+    domProps: {
+      "textContent": _vm._s(_vm.data.subject.data.konten)
+    }
+  }), _vm._v(" "), _c('hr', {
     attrs: {
       "width": "100%",
       "align": "center"
     }
-  }), _vm._v(" "), _c('button', {
-    staticClass: "btn btn-default btn-xs",
-    staticStyle: {
-      "float": "right",
-      "margin-top": "10px",
-      "margin-bottom": "10px"
-    },
-    attrs: {
-      "type": "button"
-    }
-  }, [_c('p', [_vm._v("Jawab")])])])
-}]}
+  })])])
+},staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
@@ -46093,7 +46098,22 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         $event.preventDefault();
       }
     }
-  }, [_vm._m(0)])])])]), _vm._v(" "), _vm._m(1)])])
+  }, [_vm._m(0)])])])]), _vm._v(" "), _c('div', {
+    staticClass: "col-md-9",
+    attrs: {
+      "id": "profil"
+    }
+  }, [_c('p', [_vm._v("Aktivitas Terakhir...")]), _vm._v(" "), _c('div', {
+    staticClass: "tab-content"
+  }, _vm._l((_vm.showedAktivitas), function(aktivitas, index) {
+    return _c('activity', {
+      key: aktivitas.id,
+      attrs: {
+        "data": aktivitas,
+        "actor": [_vm.dataProfile.id, _vm.dataProfile.nama]
+      }
+    })
+  }))])])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('p', [_c('span', {
     staticClass: "glyphicon glyphicon-flag",
@@ -46101,15 +46121,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "aria-hidden": "true"
     }
   }), _vm._v(" Report")])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col-md-9",
-    attrs: {
-      "id": "profil"
-    }
-  }, [_c('p', [_vm._v("Aktivitas Terakhir...")]), _vm._v(" "), _c('div', {
-    staticClass: "tab-content"
-  })])
 }]}
 module.exports.render._withStripped = true
 if (false) {
@@ -48131,21 +48142,35 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	data: function data() {
 		return {
 			'email': '',
-			'password': ''
+			'password': '',
+			'loginAsPengajar': 1,
+			'loginUrl': '',
+			'count': 0
 		};
 	},
 
+	watch: {
+		loginAsPengajar: function loginAsPengajar() {
+			this.loginUrl = this.loginAsPengajar == 2 ? '/pengajar' : '/user';
+		}
+	},
 	methods: {
 		login: function login() {
 			var formData = new FormData();
 			formData.append('email', this.email);
 			formData.append('password', this.password);
-			axios.post('/user/login', formData).then(function (success) {
+			axios.post(this.loginUrl + '/login', formData).then(function (success) {
 				$('#login-modal').modal('hide');
 				window.location = '/berita';
 			}, function (error) {
@@ -48186,7 +48211,37 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_c('div', {
     staticClass: "modal-body"
-  }, [_vm._m(1), _vm._v(" "), _c('input', {
+  }, [_vm._m(1), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s12"
+  }, [_c('select', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.loginAsPengajar),
+      expression: "loginAsPengajar"
+    }],
+    staticClass: "form-control",
+    on: {
+      "change": function($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
+          return o.selected
+        }).map(function(o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val
+        });
+        _vm.loginAsPengajar = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+      }
+    }
+  }, [_c('option', {
+    attrs: {
+      "value": "1",
+      "selected": ""
+    }
+  }, [_vm._v("Saya Pelajar")]), _vm._v(" "), _c('option', {
+    attrs: {
+      "value": "2"
+    }
+  }, [_vm._v("Saya Pengajar")])])]), _vm._v(" "), _c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -48282,16 +48337,16 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     attrs: {
-      "id": "div-login-msg"
+      "id": "div-lost-msg"
     }
   }, [_c('div', {
     staticClass: "glyphicon glyphicon-chevron-right",
     attrs: {
-      "id": "icon-login-msg"
+      "id": "icon-lost-msg"
     }
   }), _vm._v(" "), _c('span', {
     attrs: {
-      "id": "text-login-msg"
+      "id": "text-lost-msg"
     }
   }, [_vm._v("Login")])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -48473,233 +48528,6 @@ var Component = __webpack_require__(0)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "C:\\Users\\Mungkiice\\belajaryuk\\resources\\assets\\js\\components\\Navigation.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] Navigation.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-a66c2a98", Component.options)
-  } else {
-    hotAPI.reload("data-v-a66c2a98", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 125 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-	computed: {
-		loggedIn: function loggedIn() {
-			return window.App.pengajarSignedIn || window.App.userSignedIn;
-		},
-		userLoggedIn: function userLoggedIn() {
-			return window.App.user || window.App.pengajar;
-		},
-		actionLogout: function actionLogout() {
-			if (window.App.userSignedIn) {
-				return 'user/logout';
-			} else if (window.App.pengajarSignedIn) {
-				return 'pengajar/logout';
-			}
-		}
-	},
-	methods: {
-		logout: function logout() {
-			this.$el.querySelector('#logout-form').submit();
-		}
-	}
-});
-
-/***/ }),
-/* 126 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('nav', {
-    staticClass: "fh5co-nav-style-1",
-    attrs: {
-      "role": "navigation",
-      "data-offcanvass-position": "fh5co-offcanvass-left"
-    }
-  }, [_c('div', {
-    staticClass: "container"
-  }, [_vm._m(0), _vm._v(" "), _vm._m(1), _vm._v(" "), _c('div', {
-    staticClass: "col-lg-5 col-md-5 col-sm-5 text-right fh5co-link-wrap"
-  }, [_c('ul', {
-    staticClass: "fh5co-special",
-    attrs: {
-      "data-offcanvass": "yes"
-    }
-  }, [(_vm.loggedIn) ? _c('div', [_c('li', [_c('a', {
-    attrs: {
-      "href": ""
-    },
-    domProps: {
-      "textContent": _vm._s(_vm.userLoggedIn.nama)
-    }
-  })]), _vm._v(" "), _c('li', [_c('a', {
-    attrs: {
-      "href": "#"
-    },
-    on: {
-      "click": function($event) {
-        $event.preventDefault();
-        _vm.logout($event)
-      }
-    }
-  }, [_vm._v("\n        \t\t\t\tLogout\n        \t\t\t")]), _vm._v(" "), _c('form', {
-    staticStyle: {
-      "display": "none"
-    },
-    attrs: {
-      "id": "logout-form",
-      "action": _vm.actionLogout,
-      "method": "POST"
-    }
-  }, [_vm._v("\n                        window.App.crsf_token         \n                    ")])])]) : _c('li', [_c('a', {
-    staticClass: "call-to-action",
-    attrs: {
-      "href": "#",
-      "data-toggle": "modal",
-      "data-target": "#login-modal",
-      "id": "login"
-    }
-  }, [_vm._v("Login")])])])])])])
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col-lg-5 col-md-5 col-sm-5 fh5co-link-wrap"
-  }, [_c('ul', {
-    attrs: {
-      "data-offcanvass": "yes"
-    }
-  }, [_c('li', {
-    staticClass: "active"
-  }, [_c('a', {
-    attrs: {
-      "href": "/home"
-    }
-  }, [_vm._v("Belajar")])]), _vm._v(" "), _c('li', [_c('a', {
-    attrs: {
-      "href": "/diskusi"
-    }
-  }, [_vm._v("Diskusi")])]), _vm._v(" "), _c('li', [_c('a', {
-    attrs: {
-      "href": "/kampanye"
-    }
-  }, [_vm._v("Donasi")])]), _vm._v(" "), _c('li', [_c('a', {
-    attrs: {
-      "href": "/kegiatan"
-    }
-  }, [_vm._v("Kesini")])]), _vm._v(" "), _c('li', [_c('a', {
-    attrs: {
-      "href": "/berita"
-    }
-  }, [_vm._v("Berita Pendidikan")])])])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col-lg-0 col-md-2 col-sm-5 text-center fh5co-link-wrap"
-  }, [_c('ul', {
-    attrs: {
-      "data-offcanvass": "yes"
-    }
-  }, [_c('a', {
-    attrs: {
-      "href": "/home",
-      "id": "gambarlogo"
-    }
-  }, [_c('img', {
-    attrs: {
-      "src": "/images/Logo.png",
-      "alt": "logo",
-      "height": "50px"
-    }
-  })])])])
-}]}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-a66c2a98", module.exports)
-  }
-}
-
-/***/ }),
-/* 127 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var Component = __webpack_require__(0)(
-  /* script */
-  __webpack_require__(128),
-  /* template */
-  __webpack_require__(129),
-  /* styles */
-  null,
-  /* scopeId */
-  null,
-  /* moduleIdentifier (server only) */
-  null
-)
 Component.options.__file = "C:\\Users\\Mungkiice\\belajaryuk\\resources\\assets\\js\\components\\Loading.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Loading.vue: functional components are not supported with templates, they should use render functions.")}
@@ -48724,7 +48552,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 128 */
+/* 125 */
 /***/ (function(module, exports) {
 
 //
@@ -48768,7 +48596,7 @@ module.exports = Component.exports
 // }
 
 /***/ }),
-/* 129 */
+/* 126 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -48819,7 +48647,7 @@ if (false) {
 }
 
 /***/ }),
-/* 130 */
+/* 127 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

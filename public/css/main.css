@@ -6,174 +6,188 @@
     padding-left: 40px;
 }
 #hasilKumpul{
-	font-size: x-large;
-	margin-bottom: 20px;
+    font-size: x-large;
+    margin-bottom: 20px;
 }
 #ketKampanye{
-	font-size: medium;
+    font-size: medium;
 }
 #potoDiskusi > img{
-	height: 75px;
-	margin-top: 5px;
+    height: 75px;
+    margin-top: 5px;
 }
 #potoPertanyaanLain > img{
-	height: 50px;
-	margin-top: 5px;
+    height: 50px;
+    margin-top: 5px;
 }
 #kontenDiskusi{
-	margin: 10px 10px 10px 10px;
-	border : 1px;
-	border-radius: 10px;
-	background-color: #ECEFF1;
+    margin: 10px 10px 10px 10px;
+    border : 1px;
+    border-radius: 10px;
+    background-color: #ECEFF1;
+}
+#siDonatur > p{
+    margin-top: -4px;
+    margin-bottom: -4px;
+}
+#siDonatur > #tanggalDonasi{
+    font-style: none;
+    font-size: small;
 }
 #kontenDiskusi1{
-	margin-top: 10px;
-	border : 1px;
-	border-radius: 10px;
-	background-color: #ECEFF1;
+    margin-top: 10px;
+    border : 1px;
+    border-radius: 10px;
+    background-color: #ECEFF1;
 }
 #pertanyaanDiskusi{
-	margin-left: -25px;
+    margin-left: -25px;
 }
 #dMapel{
-	color: black;
-	font-size: small;
-	text-decoration : underline;
-	text-transform: lowercase;
+    color: black;
+    font-size: small;
+    text-decoration : underline;
+    text-transform: lowercase;
 
 }
 #tombolJawab {
-	float: right;
-	margin-right: -25px;
-	margin-bottom: 10px;
+    float: right;
+    margin-right: -25px;
+    margin-bottom: 10px;
 
 }
 #anonim{
-	margin-top: 15px;
-	padding-right: 10px;
-	float: right;
+    margin-top: 15px;
+    padding-right: 10px;
+    float: right;
 }
 #tombolJawab > p{
-	font-size: xx-small;
-	margin: 3px 3px 3px 3px;
+    font-size: xx-small;
+    margin: 3px 3px 3px 3px;
 }
 #tbDiskusi{
-	margin-left: 0px;
+    margin-left: 0px;
 }
 #tombolTanya {
-	margin-top: 10px;
-	margin-bottom: 10px;
-	float: right;
-	text-transform: lowercase;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    float: right;
+    text-transform: lowercase;
 }
 #penanya{
-	color: black;
-	font-size: small;
-	margin-left: -6px;
-	text-transform: lowercase;
+    color: black;
+    font-size: small;
+    margin-left: -6px;
+    text-transform: lowercase;
 }
 #pembagi > li > a{
-	color: black;
+    color: black;
 }
 
 #teraktif > img{
-	height: 50px;
-	margin-top: 5px;
+    height: 50px;
+    margin-top: 5px;
 }
 #judul{
-	margin-top: 10px;
-	margin-bottom: -3px;
+    margin-top: 10px;
+    margin-bottom: -3px;
 }
 #kontenJawab{
-	margin: 10px 10px 10px 10px;
-	border : 1px;
-	background-color: #ECEFF1;
+    margin: 10px 10px 10px 10px;
+    border : 1px;
+    background-color: #ECEFF1;
 }
 #kontenJawaban{
-	margin-top: 10px;
-	border-style: solid;
+    margin-top: 10px;
+    border-style: solid;
     border-width: 2px;
-	border-radius: 10px;
-	border-color: #ECEFF1;
+    border-radius: 10px;
+    border-color: #ECEFF1;
 }
 #kontenJawaban > p{
-	margin-top: 5px;
-	margin-bottom: 5px;
-	margin-left: 10px;
-	font-weight: bold;
-	font-size: large;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 10px;
+    font-weight: bold;
+    font-size: large;
 }
 #jawaban{
-	margin-top: -5px;
-	margin-left: -7px;
+    margin-top: -5px;
+    margin-left: -7px;
 }
 #profil{
-	margin-top: 10px;
-	border-style: solid;
+    margin-top: 10px;
+    border-style: solid;
     border-width: 2px;
-	border-radius: 10px;
-	border-color: #ECEFF1;
-	margin-left: 5px;
-	margin-right: -5px;
+    border-radius: 10px;
+    border-color: #ECEFF1;
+    margin-left: 5px;
+    margin-right: -5px;
 }
 #profil img{
-	margin-top: 10px;
-	margin-bottom: 5px;
+    margin-top: 10px;
+    margin-bottom: 5px;
 }
 #profil p{
-	padding-left: 10px;
-	padding-right: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 #profil a{
-	color :grey;
-	float: right;
+    color :grey;
+    float: right;
 }
 #profil hr{
-	margin-bottom: -3px;
+    margin-bottom: -3px;
 }
 #profil-nama{
-	font-weight: bold;
-	font-size: medium;
-	text-align: center;
+    font-weight: bold;
+    font-size: medium;
+    text-align: center;
 }
 #profil-ket{
-	font-weight: bold;
-	font-size: large;
-	margin-bottom: -10px;
+    font-weight: bold;
+    font-size: large;
+    margin-bottom: -10px;
 }
 #profil-status{
-	font-size: xx-large;
+    font-size: xx-large;
 }
 #navbarku{
   color: #303030;
 }
+nav ul a{
+    padding: 0 2px;
+}
 .control-label{
-	font-size: medium;
+    font-size: medium;
 }
 p{
-	margin-bottom: 10px;
-	margin-top: 10px;
+    margin-bottom: 10px;
+    margin-top: 10px;
 }
 #login{
-	margin-top: -15px;
-	border-radius: 7px;
+    margin-top: -15px;
+    border-radius: 7px;
+}
+.large .material-icons{
+    color: black;
 }
 .collection .collection-item.active{
-	background-color: #039BE5;
+    background-color: #039BE5;
 }
 .collection a.collection-item{
-	color: grey;
+    color: grey;
 }
 #profilGuru{
-	margin-top: 5px;
-	margin-bottom: 5px;
-	border-style: solid;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-style: solid;
     border-width: 2px;
-	border-radius: 10px;
-	border-color: #ECEFF1;
-	margin-right: 5px;
-	margin-left: 5px;
-	width: 32%;
+    border-radius: 10px;
+    border-color: #ECEFF1;
+    margin-right: 5px;
+    margin-left: 5px;
+    width: 32%;
     box-shadow: 1px 1px 1px 1px #888888;
 }
 .portfolio-view {
@@ -186,42 +200,43 @@ p{
     text-align: center;
 }
 #profil-nama-guru{
-	font-weight: bold;
-	font-size: large;
-	text-align: center;
+    font-weight: bold;
+    font-size: large;
+    text-align: center;
 }
 #bawah{
-	margin-top: -20px;
+    margin-top: -20px;
 }
 #angkanya{
-	margin-top: -12px;
-	font-size: small;
+    margin-top: -12px;
+    font-size: small;
 }
 #ketnya{
-	margin-top: -6px;
+    margin-top: -6px;
 }
 #profilGuruTampil{
-	margin-top: 5px;
-	margin-bottom: 5px;
-	border-style: solid;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-style: solid;
     border-width: 2px;
-	border-radius: 10px;
-	border-color: #ECEFF1;
-	margin-right: 5px;
-	margin-left: 5px;
-	width: 32%;
+    border-radius: 10px;
+    border-color: #ECEFF1;
+    margin-right: 5px;
+    margin-left: 5px;
+    width: 32%;
     box-shadow: 1px 1px 1px 1px #888888;
-    height: auto;
+    min-height: 500px;
 }
-#bioGuru{
-    height: 100px; 
-    display: block; 
-    display: -webkit-box;
-    line-height: 2;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
+
+#update{
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 15px;
+    background-color: #EEEEEE;
+    border-color: #EEEEEE;
+}
+#update > h2{
+    margin-top: 20px;
 }
 
 
@@ -251,6 +266,9 @@ p{
     background-color: #ccc;
     z-order: 0;
 }
+#kontenKiri{
+    text-align: left;
+}
 .stepwizard-step {
     display: table-cell;
     text-align: center;
@@ -277,7 +295,7 @@ p{
 }
 
 #login-modal input[type=text], input[type=password] {
-	margin-top: 10px;
+    margin-top: 10px;
 }
 
 #div-login-msg,
@@ -341,9 +359,9 @@ p{
     opacity: .8;
 }
 .modal{
-	max-height: 100%;
-	width: 100%;
-	background-color: transparent;
+    max-height: 100%;
+    width: 100%;
+    background-color: transparent;
 }
 
 .modal-content {
@@ -408,13 +426,13 @@ p{
   border-radius: 0px;
 }
 .modal .modal-footer .btn, .modal .modal-footer .btn-large, .modal .modal-footer .btn-flat{
-	margin: 0px;
+    margin: 0px;
 }
 .modal .modal-footer{
-	background-color: transparent;
+    background-color: transparent;
 }
 input:not([type]), input[type=text]:not(.browser-default), input[type=password]:not(.browser-default), input[type=email]:not(.browser-default), input[type=url]:not(.browser-default), input[type=time]:not(.browser-default), input[type=date]:not(.browser-default), input[type=datetime]:not(.browser-default), input[type=datetime-local]:not(.browser-default), input[type=tel]:not(.browser-default), input[type=number]:not(.browser-default), input[type=search]:not(.browser-default), textarea.materialize-textarea{
-	font-size: small;
+    font-size: small;
 }
 
 #loading {
@@ -515,4 +533,59 @@ input:not([type]), input[type=text]:not(.browser-default), input[type=password]:
 100% {
     transform: rotate(360deg);
 }
+
+
+/* carousel */
+.media-carousel 
+{
+  margin-bottom: 0;
+  padding: 0 40px 30px 40px;
+  margin-top: 30px;
 }
+/* Previous button  */
+.media-carousel .carousel-control.left 
+{
+  left: -12px;
+  background-image: none;
+  background: none repeat scroll 0 0 #222222;
+  border: 4px solid #FFFFFF;
+  border-radius: 23px 23px 23px 23px;
+  height: 40px;
+  width : 40px;
+  margin-top: 30px
+}
+/* Next button  */
+.media-carousel .carousel-control.right 
+{
+  right: -12px !important;
+  background-image: none;
+  background: none repeat scroll 0 0 #222222;
+  border: 4px solid #FFFFFF;
+  border-radius: 23px 23px 23px 23px;
+  height: 40px;
+  width : 40px;
+  margin-top: 30px
+}
+/* Changes the position of the indicators */
+.media-carousel .carousel-indicators 
+{
+  right: 50%;
+  top: auto;
+  bottom: 0px;
+  margin-right: -19px;
+}
+/* Changes the colour of the indicators */
+.media-carousel .carousel-indicators li 
+{
+  background: #c0c0c0;
+}
+.media-carousel .carousel-indicators .active 
+{
+  background: #333333;
+}
+.media-carousel img
+{
+  width: 350px;
+  height: 200px
+}
+/* End carousel */
