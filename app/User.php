@@ -16,10 +16,10 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $fillable = [
-        'nama', 'email', 'password', 'foto', 'no_telp', 'alamat', 'onesignal_player_id'
-    ];
-
+    // protected $fillable = [
+    //     'nama', 'email', 'password', 'foto', 'no_telp', 'alamat', 'onesignal_player_id'
+    // ];
+    protected $guarded = [];
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -57,7 +57,8 @@ class User extends Authenticatable
     public function kota(){
         return $this->belongsTo(Kabupaten::class, 'kabupaten_id');
     }
-    public function order($data){
+    public function acceptOrder($data){
+        $player_id = $this->onesignal_player_id;
         $data = (object) $data;
         $pengajar = Pengajar::findOrFail($data->pengajar_id);
         $total_pembayaran = $data->sesi * $pengajar->tarif;
@@ -67,12 +68,32 @@ class User extends Authenticatable
             'sesi' => $data->sesi,
             'total_pembayaran' => $total_pembayaran
         ]);
-        return $this->sendMessageToAll([
+        return $this->sendMessageToAll(
+            [
+                'en' => $pengajar->nama . ' Accept Your Request',
+            ],[
+                'en' => $data->keterangan
+            ],[
             // 'receiver_id' => $this->onesignal_player_id,
-            'pengajar_id' => $data->pengajar_id,
-            'keterangan' => $data->keterangan,
-            'sesi' => $data->sesi,
-            'total_pembayaran' => $total_pembayaran
-        ]);
+                'pengajar_id' => $data->pengajar_id,
+                'keterangan' => $data->keterangan,
+                'sesi' => $data->sesi,
+                'total_pembayaran' => $total_pembayaran
+            ]
+        );
+    }
+    public function cancelOrder($data){
+        $player_id = $this->onesignal_player_id;
+        $data = (object) $data;
+        return $this->sendMessageToAll(
+            [
+                'en' => 'Order Has Been Declined',
+            ],[
+                'en' => 'Maaf dek, saya harus menang ifest'
+            ],[
+            // 'receiver_id' => $this->onesignal_player_id,
+                'keterangan' => $data->keterangan,           
+            ]
+        );
     }
 }

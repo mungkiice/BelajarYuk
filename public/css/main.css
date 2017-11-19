@@ -225,7 +225,8 @@ p{
     margin-left: 5px;
     width: 32%;
     box-shadow: 1px 1px 1px 1px #888888;
-    min-height: 500px;
+    /*min-height: 500px;*/
+    max-height: 700px;
 }
 
 #update{

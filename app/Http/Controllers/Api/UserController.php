@@ -16,7 +16,7 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function __construct(){
-        $this->middleware('auth:user')->except(['index', 'show']);
+        // $this->middleware('auth:user')->except(['index', 'show']);
     }
     public function index()
     {
@@ -163,18 +163,15 @@ class UserController extends Controller
     }
     public function responOrder(User $user, Request $request){
         if ($request->accepted) {
-            return $user->order([
+            return $user->acceptOrder([
                 'pengajar_id' => auth()->guard('pengajar')->id(),
                 'keterangan' => $request->keterangan,
                 'sesi' => $request->sesi,
             ]);
         }else{
-            return $user->sendMessageToAll([
-                // 'receiver_id' => $user->onesignal_player_id,
+            return $user->cancelOrder([
                 'keterangan' => $request->keterangan,
             ]);
-            // return response()->json(['message' => 'order has been canceled by pengajar']);
         }
-        // return response()->json($user->kursus, 200);
     }
 }

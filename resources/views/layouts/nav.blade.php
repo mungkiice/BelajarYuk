@@ -11,7 +11,7 @@
         </div> 
         <div class="col-lg-0 col-md-2 col-sm-5 text-center fh5co-link-wrap">
             <ul data-offcanvass="yes">
-                <a href="/diskusi" id="gambarlogo"><img src="/images/logo.png" alt="logo" height="50px"></a>                    
+                <a href="/home" id="gambarlogo"><img src="/images/logo.png" alt="logo" height="50px"></a>                    
             </ul>
         </div> 
         <div class="col-lg-5 col-md-5 col-sm-5 fh5co-link-wrap">

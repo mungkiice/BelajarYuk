@@ -29,20 +29,12 @@ class LoginController extends Controller
     {
         return Auth::guard('web_user');
     }
-    public function logout(Request $request)
-    {
-        $this->guard('web_user')->logout();
-
-        $request->session()->invalidate();
-
-        return redirect('/diskusi');
-    }
     /**
      * Where to redirect users after login.
      *
      * @var string
      */
-    private $redirectTo = '/diskusi';
+    private $redirectTo = '/home';
 
     /**
      * Create a new controller instance.

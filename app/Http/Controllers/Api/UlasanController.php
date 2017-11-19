@@ -12,7 +12,7 @@ use App\Transformers\UlasanTransformer;
 class UlasanController extends Controller
 {
 	public function __construct(){
-		$this->middleware('auth:user')->except(['index', 'show']);
+		// $this->middleware('auth:user')->except(['index', 'show']);
 	}
 	public function index(Pengajar $pengajar, $paginate = 5){
 		$ulasan = $pengajar->ulasan()->latest()->paginate($paginate);

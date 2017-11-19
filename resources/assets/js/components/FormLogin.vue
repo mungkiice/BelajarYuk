@@ -10,7 +10,7 @@
 				</div>
 
 				<!-- Begin # DIV Form -->
-				<div id="div-forms">
+				<div id="div-forms" style="height:auto">
 
 					<!-- Begin # Login Form -->
 					<form id="login-form">
@@ -19,21 +19,18 @@
 								<div id="icon-lost-msg" class="glyphicon glyphicon-chevron-right"></div>
 								<span id="text-lost-msg">Login</span>
 							</div>
-							<div class="input-field col s12">
-								<select class="form-control" v-model="loginAsPengajar">
-									<option value="1" selected >Saya Pelajar</option>
-									<option value="2">Saya Pengajar</option>
-								</select>
-							</div>
+							<p>
+								<input name="group2" type="radio" id="test1" value="1" v-model="loginAsPengajar" />
+								<label for="test1">Saya Seorang Pelajar</label>
+								<input name="group2" type="radio" id="test2" value="2" v-model="loginAsPengajar" />
+								<label for="test2">Saya Seorang Pengajar</label>
+							</p>
 							<input id="login_username" v-model="email" class="form-control" type="text" placeholder="Email" required>
 							<input id="login_password" v-model="password" class="form-control" type="password" placeholder="Password" required>
-							<div class="checkbox">
-								<label></label>
-							</div>
 						</div>
 						<div class="modal-footer">
 							<div>
-								<button type="submit" class="btn btn-primary btn-lg btn-block" @click.prevent="login" style="margin-top: -40px;">Login</button>
+								<button type="submit" class="btn btn-primary btn-lg btn-block" @click.prevent="login">Login</button>
 							</div>
 							<p>
 								<input type="checkbox" id="test5" />
@@ -54,7 +51,7 @@
 								<div id="icon-lost-msg" class="glyphicon glyphicon-chevron-right"></div>
 								<span id="text-lost-msg">Type your e-mail.</span>
 							</div>
-							<input id="lost_email" class="form-control" type="text" placeholder="E-Mail (type ERROR for error effect)" required>
+							<input id="lost_email" class="form-control" type="text" placeholder="" required>
 						</div>
 						<div class="modal-footer">
 							<div>
@@ -75,13 +72,22 @@
 								<div id="icon-register-msg" class="glyphicon glyphicon-chevron-right"></div>
 								<span id="text-register-msg">Register an account.</span>
 							</div>
-							<input id="register_username" class="form-control" type="text" placeholder="Username (type ERROR for error effect)" required>
-							<input id="register_email" class="form-control" type="text" placeholder="E-Mail" required>
-							<input id="register_password" class="form-control" type="password" placeholder="Password" required>
+							<input id="register_username" class="form-control" type="text" placeholder="Nama Lengkap" v-model="nama" required>
+							<input id="register_email" class="form-control" type="text" placeholder="E-Mail" v-model="email" required>
+							<input id="register_password" class="form-control" type="password" placeholder="Password" v-model="password" required>
+							<input id="register_password_confirmation" class="form-control" type="password" placeholder="Password Confirmation" v-model="password_confirmation" required>
+							<p>
+								<input name="group1" type="radio" id="test3" value="Laki-Laki" v-model="gender" />
+								<label for="test1">Laki=Laki</label>
+								<input name="group1" type="radio" id="test4" value="Perempuan" v-model="gender" />
+								<label for="test2">Perempuan</label>
+							</p>
+							<input id="register_no_telp" class="form-control" type="number" placeholder="No Telp" v-model="no_telp" required>
+							<textarea class="materialize-textarea" placeholder="Alamat" v-model="alamat" required></textarea>
 						</div>
 						<div class="modal-footer">
 							<div>
-								<button type="submit" class="btn btn-primary btn-lg btn-block">Register</button>
+								<button type="submit" class="btn btn-primary btn-lg btn-block" @click.prevent="register">Register</button>
 							</div>
 							<div>
 								<button id="register_login_btn" type="button" class="btn btn-link"><p>Login</p></button>
@@ -100,11 +106,15 @@
 export default{
 	data(){
 		return{
-			'email' : '',
-			'password' : '',
-			'loginAsPengajar' : 1,
-			'loginUrl': '',
-			'count' : 0,
+			nama : '',
+			gender : '',
+			no_telp : '',
+			alamat : '',
+			email : '',
+			password : '',
+			password_confirmation:'',	
+			loginAsPengajar : 1,
+			loginUrl: '/user',
 		};
 	},
 	watch:{
@@ -121,6 +131,23 @@ export default{
 			.then(success => {
 				$('#login-modal').modal('hide');
 				window.location = '/berita';
+			},
+			error => {
+				console.log(error.data);
+			});
+		},
+		register(){
+			let formData = new FormData();
+			formData.append('nama', this.email);
+			formData.append('email', this.email);
+			formData.append('password', this.password);
+			formData.append('gender', this.gender);
+			formData.append('alamat', this.alamat);
+			formData.append('no_telp', this.no_telp);
+			axios.post('user/register', formData)
+			.then(success => {
+				$('#login-modal').modal('hide');
+				window.location = '/home';
 			},
 			error => {
 				console.log(error.data);

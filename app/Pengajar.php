@@ -15,10 +15,10 @@ class Pengajar extends Authenticatable
      *
      * @var array
      */
-    protected $fillable = [
-        'nama', 'email', 'password', 'foto', 'no_telp', 'alamat', 'onesignal_player_id' 
-    ];
-
+    // protected $fillable = [
+    //     'nama', 'email', 'password', 'foto', 'no_telp', 'alamat', 'onesignal_player_id', 'bio', 'gender', 'pendidikan_terakhir', 'tarif', 'aktif', 'kecamatan_id', 'kabupaten_id' 
+    // ];
+    protected $guarded = [];
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -55,16 +55,47 @@ class Pengajar extends Authenticatable
     public function getJawabanCountAttribute(){
         return $this->jawaban()->count();
     }
+    public function toggleAktif(){
+        $status = !$this->aktif;
+        $this->update([
+            'aktif' => $status,
+        ]);
+        return $status;
+    }
     public function order($data){
         $player_id = $this->onesignal_player_id;
         $data = (object) $data;
+        $user = User::find($data->user_id);
         $total_pembayaran = $data->sesi * $this->tarif;
-        return $this->sendMessageToAll([
+        return $this->sendMessageToAll(
+            [
+                //Title Notification
+                'en' => $user->nama,
+            ],[
+                //SubTitle Notification
+                'en' => $data->keterangan
+            ],[
             // 'receiver_id' => $player_id,
-            'user_id' => $data->user_id,
-            'keterangan' => $data->keterangan,
-            'sesi' => $data->sesi,
-            'total_pembayaran' => $total_pembayaran
-        ]);
+                'user_id' => $user->id,
+                'pelajaran' => $data->pelajaran,
+                'keterangan' => $data->keterangan,
+                'sesi' => $data->sesi,
+                'total_pembayaran' => $total_pembayaran,
+                'key' => 'status',
+                'value' => 'orderPengajar',
+            ],
+            [
+                [
+                    'id' => 'ActionOrderAccept',
+                    'text' => 'accept',
+                    'icon' => 'ic_menu_share'
+                ],
+                [
+                    'id' => 'ActionOrderDecline',
+                    'text' => 'decline',
+                    'icon' => 'ic_menu_send'
+                ],
+            ]
+        );
     }
 }

@@ -5,7 +5,7 @@
 		</center>
 		<hr width="90%" align="center">
 		<p id="profil-nama-guru" v-text="data.nama"></p>
-		<div id="bioGuru"><p v-text="data.bio"></p></div>
+		<div id="bioGuru" style="text-overflow:ellipsis;"><p v-text="data.bio"></p></div>
 		<div style=" bottom: 0px;">
 		<div>
 		<center><p style="font-weight: bold; background-color: #00C853; color: white; padding : 10px 0 10px 0; margin-bottom : -15px; border-radius : 10px;"> Rp. 100.000 / Sesi</p></center></div>							

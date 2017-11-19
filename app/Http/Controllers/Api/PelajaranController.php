@@ -11,7 +11,7 @@ use App\Transformers\PelajaranTransformer;
 class PelajaranController extends Controller
 {
     public function __construct(){
-         $this->middleware('auth:user')->except(['index', 'show']);
+         // $this->middleware('auth:user')->except(['index', 'show']);
     }
 	public function index(){
         $pelajaran = Pelajaran::all();

@@ -46,6 +46,8 @@ Route::prefix('v1')->group(function(){
 		Route::post('{pengajar}/ulasan', 'Api\UlasanController@store');
 
 		Route::post('{pengajar}/pesanguru', 'Api\PengajarController@pesanGuru');
+		Route::get('myprofile/{pengajar?}', 'Api\PengajarController@profile');
+		Route::post('toggleOrder', 'Api\PengajarController@openCloseOrder');
 		Route::post('updatePlayerID', 'Api\PengajarController@setPlayerID');
 		Route::get('{pelajaran?}', 'Api\PengajarController@index');
 		Route::delete('{pengajar}', 'Api\PengajarController@destroy');

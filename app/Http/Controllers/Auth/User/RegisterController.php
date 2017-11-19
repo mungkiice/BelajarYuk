@@ -27,8 +27,11 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/pengajar';
-
+    protected $redirectTo = '/diskusi';
+    protected function guard()
+    {
+        return Auth::guard('web_user');
+    }
     /**
      * Create a new controller instance.
      *
@@ -48,9 +51,14 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|string|max:255',
+            'nama' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
+            'gender' => 'required',
+            'no_telp' => 'required',
+            'alamat' => 'required',
+            'kecamatan_id' => 'required',
+            'kabupaten_id' => 'required',
         ]);
     }
 
@@ -60,12 +68,28 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
-    protected function create(array $data)
+    protected function create(array $request)
     {
+        $request = (object) $request;
+        $bio = 'placeholder biography';
+        $path = 'placeholder image';
+        if($request->hasFile('foto')){
+            $this->validate($request, [
+                'foto' => 'image|mimes:jpeg,png,jpg,gif,svg|max:5000',
+            ]);
+            $path = $request->foto->store('images/user');
+        }
         return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
+            'nama' => $request->nama,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+            'bio' => $bio,
+            'foto' => $path,
+            'gender' => $request->gender,
+            'no_telp' => $request->no_telp,
+            'alamat' => $request->alamat,
+            'kecamatan_id' => $request->kecamatan_id,
+            'kabupaten_id' => $request->kabupaten_id,
         ]);
     }
 }

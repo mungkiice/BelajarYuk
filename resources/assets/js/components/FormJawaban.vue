@@ -31,6 +31,7 @@ export default{
 				this.konten = false;
 				// flash();
 				this.$emit('created', response.data);
+				window.location = location.pathname
 			});
 		},
 		onFileChange(e) {

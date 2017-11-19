@@ -9,9 +9,15 @@
 						<div class="fh5co-overlay"></div>	
 						<img :src="data.foto" alt="Image" class="img-responsive">
 					</div>
-					<p class="cover-text-sublead wow fadeInUp" data-wow-duration="1s" data-wow-delay="1s" id="ketKampanye" v-text="data.konten"><br>A</p>
+					<p v-text="data.lokasi + '   --   ' + data.waktu"></p>
+					<p class="cover-text-sublead wow fadeInUp" data-wow-duration="1s" data-wow-delay="1s" id="ketKampanye" v-text="data.konten"><br></p>
+					<p>Penyelenggara :<br>
+						<span v-text="data.penyelenggara.nama"></span><br>
+						<span v-text="data.penyelenggara.instansi"></span><br>
+						<span v-text="data.penyelenggara.no_telp"></span>
+					</p>
 				</div>
-				<div class="col-md-4" id="tentangProgres">
+				<!-- <div class="col-md-4" id="tentangProgres">
 					<p class="fh5co-heading wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s" id="hasilKumpul">Rp. 14.045.123</p>
 					<p class="fh5co-heading wow fadeInUp" data-wow-duration="1s" data-wow-delay="1s" >Terkumpul dari target Rp. 100.000.000</p>
 					<progress value="7.1" max="100" class="fh5co-heading wow fadeInUp" data-wow-duration="1s" data-wow-delay="1.2s" style="width: 100%;"></progress>
@@ -24,7 +30,7 @@
 						</div>
 					</div>
 					<button type="button" class="btn btn-success wow fadeInUp" data-wow-duration="1s" data-wow-delay="2s" style="width: 100%;">Donasi Sekarang!</button>
-				</div>
+				</div> -->
 			</div>
 		</div>
 	</div>
@@ -43,7 +49,7 @@ export default{
 	},
 	methods:{
 		fetchData(){
-			axios.get('/api/v1/kampanye/' + this.array[2]).then((response) => {
+			axios.get('/api/v1/kegiatan/' + this.array[2]).then((response) => {
 				this.data = response.data;
 			});
 		}

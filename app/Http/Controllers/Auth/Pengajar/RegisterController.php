@@ -34,7 +34,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/pengajar';
+    protected $redirectTo = '/diskusi';
 
     /**
      * Create a new controller instance.
@@ -76,11 +76,15 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
-    protected function create($request)
+    protected function create(array $request)
     {
+        $request = (object) $request;
         $bio = 'placeholder biography';
         $path = 'placeholder image';
         if($request->hasFile('foto')){
+            $this->validate($request, [
+                'foto' => 'image|mimes:jpeg,png,jpg,gif,svg|max:5000',
+            ]);
             $path = $request->foto->store('images/pengajar');
         }
         return User::create([

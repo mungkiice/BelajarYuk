@@ -13,7 +13,7 @@ use App\Filters\PengajarFilter;
 class PengajarController extends Controller
 {
     public function __construct(){
-        $this->middleware('auth:pengajar')->except(['index', 'show']);
+        // $this->middleware('auth:pengajar')->except(['index', 'show']);
     }
     public function index(Pelajaran $pelajaran = null, PengajarFilter $filter, $paginate = 12){
         $pengajar = Pengajar::paginate($paginate);
@@ -153,6 +153,12 @@ class PengajarController extends Controller
             return $pelajaran->pengajar()->paginate($paginate);
         }
     }
+    public function profile(Pengajar $pengajar){
+        // $pengajar = auth()->guard('web_pengajar')->user();
+        return fractal()
+        ->item($pengajar, PengajarTransformer::class)
+        ->toArray();
+    }
     public function setPlayerID(Request $request){
         $pengajar = auth()->guard('pengajar')->user();
         $pengajar->update([
@@ -162,9 +168,15 @@ class PengajarController extends Controller
         ->item($pengajar, PengajarTransformer::class)
         ->toArray();
     }
+    public function openCloseOrder(){
+        $pengajar = auth()->guard('pengajar')->user();
+        $status = $pengajar->toggleAktif() ? 'aktif' : 'non-aktif';
+        return response()->json(['status' => $pengajar->toggleAktif()], 200);
+    }
     public function pesanGuru(Pengajar $pengajar, Request $request){
         return $pengajar->order(array(
             'user_id' => auth()->guard('user')->id(),
+            'pelajaran' => $request->pelajaran,
             'keterangan' => $request->keterangan,
             'sesi' => $request->sesi,
         ));

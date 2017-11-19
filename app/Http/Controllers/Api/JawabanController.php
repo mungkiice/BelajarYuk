@@ -17,11 +17,11 @@ class JawabanController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function __construct(){
-        $this->middleware('auth:user')->except(['index', 'show']);
+        // $this->middleware('pengguna')->except(['index', 'show']);
     }
     public function index(Pertanyaan $pertanyaan)
     {
-        $jawaban = $pertanyaan->jawaban()->paginate(5);
+        $jawaban = $pertanyaan->jawaban()->latest()->paginate(5);
 
         return fractal()
         ->collection($jawaban, JawabanTransformer::class)

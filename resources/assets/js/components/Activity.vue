@@ -11,7 +11,7 @@
 				</div>
 			</a>
 			<hr width="100%" align="center" style="margin-bottom: 20px;">
-			<p v-text="data.subject.data.konten"></p>
+			<p v-text="data.subject.konten"></p>
 			<hr width="100%" align="center">
 			<!-- <button type="button" class="btn btn-default btn-xs" style="float: right; margin-top: 10px; margin-bottom: 10px;"><p>Jawab</p></button> -->
 		</div>

@@ -12,7 +12,7 @@ use App\Transformers\KegiatanTransformer;
 class KegiatanController extends Controller
 {
     public function __construct(){
-        $this->middleware('auth:user')->except(['index', 'show']);
+        // $this->middleware('auth:user')->except(['index', 'show']);
     }
     public function index(Penyelenggara $penyelenggara = null, $paginate = 6){
         $kegiatan = Kegiatan::paginate($paginate);

@@ -24,6 +24,12 @@ class WebController extends Controller
 	public function detailKampanye(){
 		return view('contents.kampanye_detail');
 	}
+	public function detailBerita(){
+		return view('contents.berita_detail');
+	}
+	public function detailKegiatan(){
+		return view('contents.kegiatan_detail');
+	}
 	public function detailProfil($id = null){
 		return view('contents.profil');
 	}

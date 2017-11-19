@@ -32,6 +32,8 @@ Vue.component('paginator', require('./components/Paginator.vue'));
 Vue.component('indeks-berita', require('./pages/Berita.vue'));
 Vue.component('indeks-kampanye', require('./pages/Kampanye.vue'));
 Vue.component('detail-kampanye', require('./pages/KampanyeDetail.vue'));
+Vue.component('detail-berita', require('./pages/BeritaDetail.vue'));
+Vue.component('detail-kegiatan', require('./pages/KegiatanDetail.vue'));
 Vue.component('indeks-diskusi', require('./pages/Diskusi.vue'));
 Vue.component('form-pertanyaan', require('./pages/FormPertanyaan.vue'));
 Vue.component('detail-profile', require('./pages/Profile.vue'));
@@ -41,6 +43,7 @@ Vue.component('indeks-pengajar', require('./pages/Pengajar.vue'));
 Vue.component('form-pesan-guru', require('./pages/FormPesanGuru.vue'));
 Vue.component('form-login', require('./components/FormLogin.vue'));
 Vue.component('loading', require('./components/Loading.vue'));
+Vue.component('home', require('./pages/Home.vue'));
 const app = new Vue({
 	el: '#app'
 });

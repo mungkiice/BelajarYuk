@@ -84,12 +84,28 @@ export default{
 	},
 	methods:{
 		fetch(){
-			axios.get('/api/v1/users/'+this.array[2]).then((response) => {
-				this.dataProfile = response.data.data;
-				this.dataJawaban = this.dataProfile.jawaban.data;
-				this.dataPertanyaan = this.dataProfile.pertanyaan.data;
-				this.dataAktivitas = this.dataProfile.aktivitas.data;
-			});
+			if (window.App.userSignedIn) {
+				axios.get('/api/v1/users/'+this.array[2]).then((response) => {
+					this.dataProfile = response.data;
+					this.dataJawaban = this.dataProfile.jawaban.data;
+					this.dataPertanyaan = this.dataProfile.pertanyaan.data;
+					this.dataAktivitas = this.dataProfile.aktivitas.data;
+				});
+			}else if (window.App.pengajarSignedIn){
+				axios.get('/api/v1/pengajar/myprofile/'+this.array).then((response) => {
+					this.dataProfile = response.data;
+					this.dataJawaban = this.dataProfile.jawaban.data;
+					this.dataPertanyaan = this.dataProfile.pertanyaan.data;
+					this.dataAktivitas = this.dataProfile.aktivitas.data;
+				});
+			}else{
+				axios.get('/api/v1/users/'+this.array[2]).then((response) => {
+					this.dataProfile = response.data;
+					this.dataJawaban = this.dataProfile.jawaban.data;
+					this.dataPertanyaan = this.dataProfile.pertanyaan.data;
+					this.dataAktivitas = this.dataProfile.aktivitas.data;
+				});
+			}
 		}
 	}
 }

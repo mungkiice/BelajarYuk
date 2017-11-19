@@ -11,7 +11,7 @@ use App\Transformers\KampanyeTransformer;
 class KampanyeController extends Controller
 {
     public function __construct(){
-        $this->middleware('auth:user')->except(['index', 'show']);
+        // $this->middleware('auth:user')->except(['index', 'show']);
     }
     public function index($paginate = 6){
         $kampanye = Kampanye::where('valid',1)->paginate($paginate);

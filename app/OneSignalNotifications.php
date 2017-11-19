@@ -1,9 +1,9 @@
-<?php 
+<?php
 
 namespace App;
 
 trait OneSignalNotifications{
-	protected function sendMessageToAll($heading, $content, $data){
+	protected function sendMessageToAll($heading, $content, $data, $buttons = null){
 		// $content = array(
 		// 	"en" => 'English Message'
 		// );
@@ -13,7 +13,8 @@ trait OneSignalNotifications{
 			'included_segments' => array('All'),
 			'data' => $data,
 			'contents' => $content,
-			'headings' => $heading
+			'headings' => $heading,
+			'buttons' => $buttons, 
 		);
 
 		$fields = json_encode($fields);
@@ -34,7 +35,7 @@ trait OneSignalNotifications{
 
 		return $response;
 	}
-	protected function sendMessageToUser($content, $data){
+	protected function sendMessageToUser($receiver, $heading, $content, $data, $buttons = null){
 		// $content = array(
 		// 	"en" => 'English Message'
 		// );
@@ -42,9 +43,11 @@ trait OneSignalNotifications{
 		$fields = array(
 			'app_id' => "10a86433-0f00-48f3-8e35-b1b81099969a",
 			'included_segments' => array('Active Users'),
-			'include_player_ids' => array($data['receiver_id']),
+			'include_player_ids' => $receiver,
 			'data' => $data,
-			'contents' => $content
+			'contents' => $content,
+			'headings' => $heading,
+			'buttons' => $buttons
 		);
 		$fields = json_encode($fields);
 		// print("\nJSON sent:\n");

@@ -29,21 +29,13 @@ class LoginController extends Controller
     {
         return Auth::guard('web_pengajar');
     }
-    public function logout(Request $request)
-    {
-        $this->guard('web_pengajar')->logout();
-
-        $request->session()->invalidate();
-
-        return redirect('/diskusi');
-    }
 
     /**
      * Where to redirect users after login.
      *
      * @var string
      */
-    protected $redirectTo = '/pengajar';
+    protected $redirectTo = '/home';
 
     /**
      * Create a new controller instance.

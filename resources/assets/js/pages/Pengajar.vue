@@ -21,7 +21,10 @@
 
 			</div>
 			<div class="col-md-9">
-				<pengajar v-for="(pengajar, indeks) in pengajars" :key="pengajar.id" :data="pengajar"></pengajar>
+				<div v-for="(pengajar, index) in pengajars" :key="pengajar.id">
+					<pengajar :data="pengajar"></pengajar>
+					<div class="clearfix" v-if="enter(index)"></div>
+				</div>
 				<paginator :dataSet="dataSet" @changed="refetchDataPengajar"></paginator>
 			</div>
 		</div>
@@ -54,8 +57,8 @@ export default{
 	methods:{
 		isSelected(selected){
 			return [
-				'collection-item',
-				this.currentPelajaran == selected ? 'active' : null,
+			'collection-item',
+			this.currentPelajaran == selected ? 'active' : null,
 			];
 		},
 		fetchData(){
@@ -89,6 +92,10 @@ export default{
 				this.currentPelajaran = pelajaran;
 				return 'api/v1/pengajar/'+pelajaran+'/?page='+page;
 			}
+		},
+		enter(param){
+			var hasil = (param + 1) % 3;
+			return (hasil != 0) ? false : true;
 		},
 	}
 }

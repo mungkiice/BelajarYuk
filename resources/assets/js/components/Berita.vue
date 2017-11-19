@@ -6,7 +6,7 @@
 				<img :src="data.foto" alt="Image" class="img-responsive">
 			</div>
 			<div class="fh5co-post-text">
-				<h3><a href="#" v-text="data.judul"></a></h3>
+				<h3><a :href="'/berita/' + data.id" v-text="data.judul"></a></h3>
 				<p v-text="data.konten"></p>
 			</div>
 			<div class="fh5co-post-meta">

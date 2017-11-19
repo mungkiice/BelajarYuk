@@ -6,12 +6,12 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>BelajarYuk &mdash; Proses Belajar menjadi Asik!</title>
+    <title>BelajarYuk &mdash; Belajar Asik dan Bermanfaat</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="BelajarYuk Website Pembelajaran Online" />
     <meta name="keywords" content="belajar, guru les, private, pelajaran, pertanyaan, donasi" />
     <meta name="author" content="BelajarYuk" />
-
+    <meta charset="utf-8">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <script type="text/javascript">
@@ -48,9 +48,11 @@
 <meta name="twitter:url" content="" />
 <meta name="twitter:card" content="" />
 
+<link href = "/images/logo.png" rel="icon" type="image/gif">
 <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 <link rel="shortcut icon" href="favicon.ico">
-
+<!--Import materialize.css-->
+<link type="text/css" rel="stylesheet" href="{{asset('css/materialize.min.css')}}"  media="screen,projection"/>
 <!-- Google Fonts -->
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700|Monsterrat:400,700|Merriweather:400,300italic,700' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="{{asset('font-awesome/css/font-awesome.min.css')}}">
@@ -62,8 +64,6 @@
 <link rel="stylesheet" href="{{asset('css/magnific-popup.css')}}">
 <!--Import Google Icon Font-->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<!--Import materialize.css-->
-<link type="text/css" rel="stylesheet" href="{{asset('css/materialize.min.css')}}"  media="screen,projection"/>
 <!-- Owl Carousel -->
 <link rel="stylesheet" href="{{asset('css/owl.carousel.min.css')}}">
 <link rel="stylesheet" href="{{asset('css/owl.theme.default.min.css')}}">

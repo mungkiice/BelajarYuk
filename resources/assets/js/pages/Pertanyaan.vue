@@ -7,19 +7,19 @@
 					<div class="row" id="kontenDiskusi1">
 						<div class="col-md-2" id="potoDiskusi">
 							<img :src="user.foto" class="img-circle"> 
-							<center><a href="" id="penanya" v-text="user.nama"></a></center>
+							<center><a :href="'/profil/' + user.id" id="penanya" v-text="user.nama"></a></center>
 						</div>
 						<div class="col-md-10" id="pertanyaanDiskusi">
 							<a href="" v-text="pertanyaan.pelajaran"></a>
 							<p v-text="pertanyaan.konten"></p>
-							<button type="button" class="btn btn-default btn-xs" id="tombolJawab"><p>Report</p></button>
+							<!-- <button type="button" class="btn btn-default btn-xs" id="tombolJawab"><p>Report</p></button> -->
 						</div>
 					</div>
 					<div class="row" id="kontenJawaban">
 						<p>Jawaban yang lain</p>
 						<jawaban v-for="jawaban in jawabans" :key="jawaban.id" :data="jawaban"></jawaban>
 					</div>				
-					<form-jawaban></form-jawaban>
+					<form-jawaban v-show="loggedIn"></form-jawaban>
 					<!-- <hr width="90%" align="center">  -->
 				</div>
 
@@ -51,6 +51,11 @@ export default{
 	created(){
 		this.array = location.pathname.split('/');
 		this.fetchData();
+	},
+	computed:{
+		loggedIn(){
+			return window.App.userSignedIn || window.App.pengajarSignedIn;
+		}
 	},
 	methods:{
 		fetchData(){

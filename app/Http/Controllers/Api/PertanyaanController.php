@@ -18,9 +18,9 @@ class PertanyaanController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function __construct(){
-        $this->middleware('auth:user')->except(['index', 'show']);
+        // $this->middleware('auth:user')->except(['index', 'show']);
     }
-    public function index(Pelajaran $pelajaran = null, $paginate = 5)
+    public function index(Pelajaran $pelajaran = null, $paginate = 6)
     {
         $pertanyaan = Pertanyaan::latest()->paginate($paginate);
 
@@ -58,7 +58,7 @@ class PertanyaanController extends Controller
         $pertanyaan = Pertanyaan::create([
             'konten' => $request->konten,
             'foto' => $path,
-            'user_id' => auth()->id(),
+            'user_id' => auth()->guard('web_user')->id(),
             'pelajaran_id' => $request->pelajaran_id,
             'judul' => $request->judul
         ]);

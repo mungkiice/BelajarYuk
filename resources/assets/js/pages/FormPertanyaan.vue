@@ -78,7 +78,7 @@ export default{
 				success => {
 					// this.$router.router.go('/welcome');
 					// axios.get('/welcome');
-					window.location = '/diskusi';
+					window.location = '';
 				}, 
 				error => {
 					console.log(error.data);

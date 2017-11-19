@@ -33,6 +33,8 @@ Route::get('diskusi', 'WebController@indexDiskusi');
 Route::get('pertanyaan/{pelajaran}/{id}', 'WebController@detailDiskusi');
 Route::get('kampanye', 'WebController@indexKampanye');
 Route::get('kampanye/{id}', 'WebController@detailKampanye');
+Route::get('berita/{id}', 'WebController@detailBerita');
+Route::get('kegiatan/{id}', 'WebController@detailKegiatan');
 Route::get('profil/{id?}', 'WebController@detailProfil');
 Route::get('bertanya', 'WebController@formPertanyaan');
 Route::get('kegiatan', 'WebController@indexKegiatan');
