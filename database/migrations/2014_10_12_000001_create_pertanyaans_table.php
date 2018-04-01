@@ -15,7 +15,7 @@ class CreatePertanyaansTable extends Migration
     {
         Schema::create('pertanyaans', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned()->nullable();
+            $table->integer('user_id')->unsigned();
             $table->integer('pelajaran_id')->unsigned()->nullable();
             $table->string('judul');
             $table->text('konten');

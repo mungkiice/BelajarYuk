@@ -17,7 +17,7 @@ class JawabanController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function __construct(){
-        // $this->middleware('pengguna')->except(['index', 'show']);
+        $this->middleware('pengguna')->except(['index', 'show']);
     }
     public function index(Pertanyaan $pertanyaan)
     {
@@ -42,7 +42,7 @@ class JawabanController extends Controller
         ->toArray();
     }
     public function store(Pertanyaan $pertanyaan, Request $request){
-        $this->validate(request(),[
+        $this->validate($request,[
             'konten' => 'required'
         ]);
         $path = 'image placeholder';
@@ -52,11 +52,12 @@ class JawabanController extends Controller
             ]);
             $path = $request->foto->store('images/jawaban');
         }
-        $jawaban = $pertanyaan->addJawaban([
+        $jawaban = Jawaban::create([
+            'pertanyaan_id' => $pertanyaan->id,
             'konten' => request('konten'),
             'foto' => $path,
-            'subject_id' => auth()->id(),
-            'subject_type' => get_class(auth()->user()),
+            'subject_id' => auth()->guard('web_user')->id(),
+            'subject_type' => get_class(auth()->guard('web_user')->user()),
         ]);
 
         $response =  fractal()

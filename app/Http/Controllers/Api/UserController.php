@@ -60,7 +60,7 @@ class UserController extends Controller
         $bio = 'biography placeholder';
         $path = 'image placeholder';
         if($request->hasFile('foto')){
-            $path = $request->foto->store('images/pelajar');
+            $path = $request->foto->store('images/pelajar', 'public');
         }
         $user = User::create([
             'nama' => $request->nama,
@@ -123,7 +123,7 @@ class UserController extends Controller
             $this->validate($request,[
                 'foto' => 'image|mimes:jpeg,png,jpg,gif,svg|max:5000',
             ]);
-            $path = $request->foto->store('images/pelajar');
+            $path = $request->foto->store('images/pelajar', 'public');
             $user->update('foto', $path);
         }
         $user->update([

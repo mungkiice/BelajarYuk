@@ -20,7 +20,7 @@ class Pertanyaan extends Model
     	return $this->belongsTo(Pelajaran::class);
     }
     public function addJawaban($jawaban){
-        return $this->jawaban()->create($jawaban);
+        // return $this->jawaban()->create($jawaban);
     }
     public function path(){
     	return "";

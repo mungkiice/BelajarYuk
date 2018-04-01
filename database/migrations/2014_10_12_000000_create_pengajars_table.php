@@ -34,7 +34,7 @@ class CreatePengajarsTable extends Migration
             $table->timestamps();
 
             $table->foreign('kabupaten_id')->references('id')->on('kabupatens')->onDelete('cascade');
-            $table->foreign('kecamatan_id')->references('id')->on('kecamatan')->onDelete('cascade');
+            $table->foreign('kecamatan_id')->references('id')->on('kecamatans')->onDelete('cascade');
         });
     }
 

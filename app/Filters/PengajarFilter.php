@@ -12,7 +12,8 @@ class PengajarFilter extends Filters{
         // $kota = Kabupaten::where('nama', $kota)->firstOrFail();
         $kabupaten = Kabupaten::where('nama', $kabupaten)->firstOrFail();
         return $this->builder
-        ->where('kabupaten_id', $kabupaten->id);
+        ->where('kabupaten_id', $kabupaten->id)
+        ->where('aktif',1)->get();
         // ->orWhere('kabupaten_id', optional($kabupaten->kota)->id);
     }
 }

@@ -18,8 +18,8 @@
             <ul class="fh5co-special" data-offcanvass="yes">
                 <div class="navbar navbar-right">
 
-                    <li><a href="#">Tentang Kami</a></li>
-                    <li><a href="#">Bantuan</a></li>
+                   {{--  <li><a href="#">Tentang Kami</a></li>
+                    <li><a href="#">Bantuan</a></li> --}}
                     @if(Auth::guard('web_user')->check())
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">

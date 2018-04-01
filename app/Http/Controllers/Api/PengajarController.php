@@ -13,10 +13,10 @@ use App\Filters\PengajarFilter;
 class PengajarController extends Controller
 {
     public function __construct(){
-        // $this->middleware('auth:pengajar')->except(['index', 'show']);
+        $this->middleware('pengguna')->except(['index', 'show']);
     }
     public function index(Pelajaran $pelajaran = null, PengajarFilter $filter, $paginate = 12){
-        $pengajar = Pengajar::paginate($paginate);
+        $pengajar = Pengajar::where('aktif',1)->paginate($paginate);
         if($pelajaran != null){            
             $pengajar = $this->getPengajar($pelajaran, $filter, $paginate);
         }
@@ -54,7 +54,7 @@ class PengajarController extends Controller
         $bio = 'placeholder biography';
         $path = 'placeholder image';
         if($request->hasFile('foto')){
-            $path = $request->foto->store('images/pengajar');
+            $path = $request->foto->store('images/pengajar', 'public');
         }
         $pengajar = Pengajar::create([
             'nama' => $request->nama,
@@ -116,7 +116,7 @@ class PengajarController extends Controller
             $this->validate($request, [
                 'foto' => 'image|mimes:jpeg,png,jpg,gif,svg|max:5000',
             ]);
-            $path = $request->foto->store('images/pengajar');
+            $path = $request->foto->store('images/pengajar', 'public');
             $pengajar->update(['foto' => $path]);
         }
         $pengajar->update([

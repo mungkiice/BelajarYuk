@@ -35,11 +35,11 @@ Route::prefix('v1')->group(function(){
 		Route::get('{pertanyaan}/jawaban', 'Api\JawabanController@index');
 		Route::post('{pertanyaan}/jawaban', 'Api\JawabanController@store');
 
-		Route::get('{pelajaran?}','Api\PertanyaanController@index');
-		Route::get('{pelajaran}/{pertanyaan}','Api\PertanyaanController@show');
 		Route::post('', 'Api\PertanyaanController@store');
+		Route::get('{pelajaran?}','Api\PertanyaanController@index');
 		Route::delete('{pertanyaan}', 'Api\PertanyaanController@destroy');
 		Route::put('{pertanyaan}', 'Api\PertanyaanController@update');
+		Route::get('{pelajaran}/{pertanyaan}','Api\PertanyaanController@show');
 	});
 	Route::prefix('pengajar')->group(function(){
 		Route::get('{pengajar}/ulasan', 'Api\UlasanController@index');

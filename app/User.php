@@ -68,7 +68,10 @@ class User extends Authenticatable
             'sesi' => $data->sesi,
             'total_pembayaran' => $total_pembayaran
         ]);
-        return $this->sendMessageToAll(
+        return $this->sendMessageToUser(
+            [
+                '80f10f05-9571-4ad2-b084-112048b6c65b'
+            ],
             [
                 'en' => $pengajar->nama . ' Accept Your Request',
             ],[
@@ -78,21 +81,26 @@ class User extends Authenticatable
                 'pengajar_id' => $data->pengajar_id,
                 'keterangan' => $data->keterangan,
                 'sesi' => $data->sesi,
-                'total_pembayaran' => $total_pembayaran
+                'total_pembayaran' => $total_pembayaran,
+                'status' => 'acceptOrderPengajar'
             ]
         );
     }
     public function cancelOrder($data){
         $player_id = $this->onesignal_player_id;
         $data = (object) $data;
-        return $this->sendMessageToAll(
+        return $this->sendMessageToUser(
+            [
+                '80f10f05-9571-4ad2-b084-112048b6c65b'
+            ],
             [
                 'en' => 'Order Has Been Declined',
             ],[
                 'en' => 'Maaf dek, saya harus menang ifest'
             ],[
             // 'receiver_id' => $this->onesignal_player_id,
-                'keterangan' => $data->keterangan,           
+                'keterangan' => $data->keterangan,  
+                'status' => 'cancelOrderPengajar'      
             ]
         );
     }

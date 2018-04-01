@@ -37,7 +37,7 @@ class UserTransformer extends TransformerAbstract
 		return $this->collection($ulasan, new UlasanTransformer);
 	}
 	public function includeAktivitas(User $user){
-		$aktivitas = $user->aktivitas;
+		$aktivitas = $user->aktivitas()->latest()->get();
 		return $this->collection($aktivitas, new AktivitasTransformer);
 	}
 }

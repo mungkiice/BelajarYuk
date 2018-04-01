@@ -26,12 +26,12 @@ export default{
 			formData.append('foto', this.foto);
 			axios.post('/api/v1/pertanyaan/' + this.array[3] + '/jawaban', 
 				formData)
-			.then(response => {
+			.then(success => {
 				this.foto = false;
 				this.konten = false;
 				// flash();
-				this.$emit('created', response.data);
-				window.location = location.pathname
+				// this.$emit('created', response.data);
+				// window.location = location.pathname
 			});
 		},
 		onFileChange(e) {

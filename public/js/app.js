@@ -45862,7 +45862,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			axios.post('/api/v1/pertanyaan', formData).then(function (success) {
 				// this.$router.router.go('/welcome');
 				// axios.get('/welcome');
-				window.location = '';
+				window.location = '/diskusi';
 			}, function (error) {
 				console.log(error.data);
 			});
@@ -47001,12 +47001,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			var formData = new FormData();
 			formData.append('konten', this.konten);
 			formData.append('foto', this.foto);
-			axios.post('/api/v1/pertanyaan/' + this.array[3] + '/jawaban', formData).then(function (response) {
+			axios.post('/api/v1/pertanyaan/' + this.array[3] + '/jawaban', formData).then(function (success) {
 				_this.foto = false;
 				_this.konten = false;
 				// flash();
-				_this.$emit('created', response.data);
-				window.location = location.pathname;
+				// this.$emit('created', response.data);
+				// window.location = location.pathname
 			});
 		},
 		onFileChange: function onFileChange(e) {

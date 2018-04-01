@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Pertanyaan;
 use App\Pelajaran;
 use App\Transformers\TransformerBuatan;
+use Illuminate\Support\Facades\Auth;
 
 class PertanyaanController extends Controller
 {
@@ -18,7 +19,7 @@ class PertanyaanController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function __construct(){
-        // $this->middleware('auth:user')->except(['index', 'show']);
+        $this->middleware('pengguna')->except(['index', 'show']);
     }
     public function index(Pelajaran $pelajaran = null, $paginate = 6)
     {
@@ -58,7 +59,7 @@ class PertanyaanController extends Controller
         $pertanyaan = Pertanyaan::create([
             'konten' => $request->konten,
             'foto' => $path,
-            'user_id' => auth()->guard('web_user')->id(),
+            'user_id' => Auth::guard('user')->id(),
             'pelajaran_id' => $request->pelajaran_id,
             'judul' => $request->judul
         ]);

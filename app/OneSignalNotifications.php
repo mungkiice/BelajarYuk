@@ -42,7 +42,7 @@ trait OneSignalNotifications{
 
 		$fields = array(
 			'app_id' => "10a86433-0f00-48f3-8e35-b1b81099969a",
-			'included_segments' => array('Active Users'),
+			// 'included_segments' => array('Active Users'),
 			'include_player_ids' => $receiver,
 			'data' => $data,
 			'contents' => $content,

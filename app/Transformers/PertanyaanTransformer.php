@@ -1,6 +1,5 @@
 <?php
 namespace App\Transformers;
-use League\Fractal\Pagination\IlluminatePaginatorAdapter;
 use App\Pertanyaan;
 use League\Fractal\TransformerAbstract;
 
@@ -25,7 +24,7 @@ class PertanyaanTransformer extends TransformerAbstract
         ];
     }
     public function includeJawaban(Pertanyaan $pertanyaan){
-        $jawaban = $pertanyaan->jawaban;
+        $jawaban = $pertanyaan->jawaban()->latest()->get();
         return $this->collection($jawaban, new JawabanTransformer);
     }
     public function includeUser(Pertanyaan $pertanyaan){

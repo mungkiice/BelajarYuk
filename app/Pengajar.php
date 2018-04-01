@@ -29,7 +29,7 @@ class Pengajar extends Authenticatable
     ];
     protected $appends = ['JawabanCount'];
     public function pelajaran(){
-    	return $this->belongsToMany(Pelajaran::Class, 'mengajars');
+    	return $this->belongsToMany(Pelajaran::class, 'mengajars');
     }
     public function jawaban(){
     	return $this->morphMany(Jawaban::class, 'subject');
@@ -67,13 +67,18 @@ class Pengajar extends Authenticatable
         $data = (object) $data;
         $user = User::find($data->user_id);
         $total_pembayaran = $data->sesi * $this->tarif;
-        return $this->sendMessageToAll(
+        return $this->sendMessageToUser(
+            [
+                'ac1bb48c-4d9b-405e-9185-3b1f183b82c9'
+            ],
             [
                 //Title Notification
                 'en' => $user->nama,
+                // 'en' => 'yoogs'
             ],[
                 //SubTitle Notification
                 'en' => $data->keterangan
+                // 'en' => 'kehed'
             ],[
             // 'receiver_id' => $player_id,
                 'user_id' => $user->id,
@@ -81,8 +86,7 @@ class Pengajar extends Authenticatable
                 'keterangan' => $data->keterangan,
                 'sesi' => $data->sesi,
                 'total_pembayaran' => $total_pembayaran,
-                'key' => 'status',
-                'value' => 'orderPengajar',
+                'status' => 'orderPengajar'
             ],
             [
                 [
